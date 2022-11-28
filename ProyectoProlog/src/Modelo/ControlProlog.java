@@ -21,6 +21,7 @@ public class ControlProlog {
     public ControlProlog(String nombreArchivo) {
         this.conexion = new Query("consult('"+nombreArchivo+"')");
         this.nombreArchivo = nombreArchivo;
+        this.isConnected();
     }
     
     public boolean isConnected(){
@@ -56,6 +57,7 @@ public class ControlProlog {
         this.consulta = new Query("disenos(_,X)");
         while (this.consulta.hasNext())
             dev.add(this.consulta.nextSolution().get("X").toString().replace('_', ' '));
+        this.consulta.close();
         return dev;
     }
     public ArrayList<String> getSizesGuide(){
@@ -69,6 +71,7 @@ public class ControlProlog {
                     solution.get("Medida").toString().replace("__", "\0").replace('_', ' ')
             );
         }
+        this.consulta.close();
         return dev;
     }
     public ArrayList<String> getColors(){
@@ -82,15 +85,28 @@ public class ControlProlog {
         }
         return dev;
     }
-    public ArrayList<String> getCatDesign(String diseño){
+    public ArrayList<String> getCatDesign(String design){
         ArrayList<String> dev;
         dev = new ArrayList<>();
-        this.consulta = new Query("diseno_cat("+diseño.toLowerCase()+")");
+        this.consulta = new Query("diseno_cat("+design.toLowerCase()+")");
         Map<String, Term> solution;
         while (this.consulta.hasNext()){
             solution = this.consulta.nextSolution();
             //dev.add(solution.toString());
         }
+        this.consulta.close();
+        return dev;
+    }
+    public String getPriceForTypeAndDesign(String typeProduct, String category){
+        this.consulta = null;
+        String dev = "",query;
+        this.isConnected();
+        query = "cotizador("+typeProduct.toLowerCase()+","+category.toLowerCase()+",Precio)";
+        System.out.println("Query "+query);
+        this.consulta = new Query(query);
+        this.consulta.hasSolution();
+        while (this.consulta.hasMoreSolutions()) 
+            this.consulta.nextSolution();
         return dev;
     }
 }

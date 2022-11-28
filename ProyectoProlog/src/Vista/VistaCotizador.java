@@ -69,6 +69,11 @@ public class VistaCotizador extends javax.swing.JFrame {
         listaMateriales.setFont(new java.awt.Font("Papyrus", 1, 14)); // NOI18N
         listaMateriales.setForeground(new java.awt.Color(0, 102, 0));
         listaMateriales.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Material" }));
+        listaMateriales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listaMaterialesActionPerformed(evt);
+            }
+        });
 
         listaDisenos.setFont(new java.awt.Font("Papyrus", 1, 14)); // NOI18N
         listaDisenos.setForeground(new java.awt.Color(0, 153, 153));
@@ -141,7 +146,7 @@ public class VistaCotizador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaDisenosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaDisenosActionPerformed
-        // TODO add your handling code here:
+        this.checkAllFields();
     }//GEN-LAST:event_listaDisenosActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -153,6 +158,9 @@ public class VistaCotizador extends javax.swing.JFrame {
         this.listaDisenos.setEnabled(true);
         this.listaDisenos.setModel(this.vc.fillDesignJList(String.valueOf(this.listaTipoProd.getSelectedItem())));
     }//GEN-LAST:event_listaTipoProdActionPerformed
+
+    private void listaMaterialesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listaMaterialesActionPerformed
+    }//GEN-LAST:event_listaMaterialesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -189,7 +197,17 @@ public class VistaCotizador extends javax.swing.JFrame {
             }
         });
     }
-
+    private void checkAllFields(){
+        if (this.listaTipoProd.getSelectedIndex() >0&&
+                this.listaMateriales.getSelectedIndex()>0
+                &&this.listaDisenos.getSelectedIndex()>0) {
+            resultado.setText(
+                    this.vc.getPriceForProduct(
+                            String.valueOf(this.listaTipoProd.getSelectedItem())
+                            ,String.valueOf(this.listaDisenos.getSelectedItem())
+                    ));
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgProd;
     private javax.swing.JLabel jLabel1;

@@ -14,8 +14,7 @@ import Modelo.ControlProlog;
  */
 public class Principal {
     public static void main(String[] args) {
-        ControlProlog cp = new ControlProlog("Db Mexihat.pl");
-        cp.isConnected();
+        
         new VistaPrincipal().setVisible(true);
     }
     

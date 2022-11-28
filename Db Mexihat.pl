@@ -407,19 +407,19 @@ empleados(marco_antonio_argote_gasca, calidad).
 
 
 % Datos para cotizar
-costoProd(sombrero, 60).
-costoProd(tenis, 1200).
-costoProd(bolsa, 70).
-costoProd(aretes, 40).
-costoCate(flores, 240).
-costoCate(animal, 250).
-costoCate(personaje, 400).
-costoCate(pluma, 240).
-costoCate(mariposa, 250).
-costoCate(mandala, 280).
-costoCate(caballo, 290).
-costoCate(colibri, 260).
-costoCate(especial, 430).
+costoProd(sombrero,60).
+costoProd(tenis,1200).
+costoProd(bolsa,70).
+costoProd(aretes,40).
+costoCate(flores,240).
+costoCate(animal,250).
+costoCate(personaje,400).
+costoCate(pluma,240).
+costoCate(mariposa,250).
+costoCate(mandala,280).
+costoCate(caballo,290).
+costoCate(colibri,260).
+costoCate(especial,430).
 
 
 %________________________________________________
@@ -450,5 +450,6 @@ agregar(X,Y) :- assertz(disenos(X,Y)).
 diseno_cat(X,Design):- setof(Y, disenoclasificacion(Y,X), Design).
 
 % Cotizar
-cotizar(T,D) :-  costoTipo(T,X), costoDis(D,Y), 
-                 C is (X + Y), format("Costo: ~w",[C]), nl.
+cotizador(T,D,Z) :-  costoProd(T,X), costoCate(D,Y), 
+                 C is (X + Y),
+                 string_concat("$ ",C,Z).
