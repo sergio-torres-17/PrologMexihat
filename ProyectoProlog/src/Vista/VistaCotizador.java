@@ -203,7 +203,8 @@ public class VistaCotizador extends javax.swing.JFrame {
                 &&this.listaDisenos.getSelectedIndex()>0) {
             resultado.setText(
                     this.vc.getPriceForProduct(
-                            String.valueOf(this.listaTipoProd.getSelectedItem())
+                            String.valueOf(this.listaTipoProd.getSelectedItem()),
+                            String.valueOf(this.listaMateriales.getSelectedItem())
                             ,String.valueOf(this.listaDisenos.getSelectedItem())
                     ));
         }

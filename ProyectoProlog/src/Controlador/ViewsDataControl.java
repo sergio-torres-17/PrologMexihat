@@ -93,7 +93,7 @@ public class ViewsDataControl {
         });
         return dev;
     }
-    public String getPriceForProduct(String typeProduct, String category){
-        return this.cp.getPriceForTypeAndDesign(typeProduct, category);
+    public String getPriceForProduct(String typeProduct, String material, String design){
+        return this.cp.getPriceForTypeAndDesign(typeProduct, material, design);
     }
 }

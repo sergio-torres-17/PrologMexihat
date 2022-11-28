@@ -97,11 +97,11 @@ public class ControlProlog {
         this.consulta.close();
         return dev;
     }
-    public String getPriceForTypeAndDesign(String typeProduct, String category){
+    public String getPriceForTypeAndDesign(String typeProduct, String material, String design){
         this.consulta = null;
         String dev = "",query;
         this.isConnected();
-        query = "cotizador("+typeProduct.toLowerCase()+","+category.toLowerCase()+",Precio)";
+        query = "cotizador("+typeProduct.toLowerCase()+","+material.toLowerCase()+","+design.toLowerCase()+",Precio)";
         System.out.println("Query "+query);
         this.consulta = new Query(query);
         this.consulta.hasSolution();

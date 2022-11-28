@@ -420,6 +420,11 @@ costoCate(mandala,280).
 costoCate(caballo,290).
 costoCate(colibri,260).
 costoCate(especial,430).
+costoMate(lona,60).
+costoMate(yute,70).
+costoMate(gamuza,100).
+costoMate(dubetina,80).
+costoMate(vinipiel,100).
 
 
 %________________________________________________
@@ -450,6 +455,6 @@ agregar(X,Y) :- assertz(disenos(X,Y)).
 diseno_cat(X,Design):- setof(Y, disenoclasificacion(Y,X), Design).
 
 % Cotizar
-cotizador(T,D,Z) :-  costoProd(T,X), costoCate(D,Y), 
-                 C is (X + Y),
+cotizador(T,M,D,Z) :-  costoProd(T,X), costoMate(M,W), costoCate(D,Y), 
+                 C is (X + W + Y),
                  string_concat("$ ",C,Z).
