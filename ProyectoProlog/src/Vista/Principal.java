@@ -16,9 +16,6 @@ public class Principal {
     public static void main(String[] args) {
         ControlProlog cp = new ControlProlog("Db Mexihat.pl");
         cp.isConnected();
-        for (String string : cp.getCatDesign("flores")) {
-            System.out.println("Diseño "+string);
-        }
         new VistaPrincipal().setVisible(true);
     }
     
