@@ -454,7 +454,6 @@ agregar(X,Y) :- assertz(disenos(X,Y)).
 % Saber a que categor�a pertenece un dise�o.
 diseno_cat(X,Design):- setof(Y, disenoclasificacion(Y,X), Design).
 
-% Cotizar
 cotizador(T,M,D,Z) :-  costoProd(T,X), costoMate(M,W), costoCate(D,Y), 
                  C is (X + W + Y),
                  string_concat("$ ",C,Z).
