@@ -27,6 +27,7 @@ public class ControlProlog {
     public boolean isConnected(){
         return conexion.hasSolution();
     }
+    
     public ArrayList<String> getProductType(){
         ArrayList<String> dev = new ArrayList<>();
         this.consulta = new Query("tipo_producto(X)");
@@ -80,7 +81,17 @@ public class ControlProlog {
             solution = this.consulta.nextSolution();
             dev.add(solution.get("Categoria").toString() +","+solution.get("Color").toString());
         }
-            
+        return dev;
+    }
+    public ArrayList<String> getCatDesign(String diseño){
+        ArrayList<String> dev;
+        dev = new ArrayList<>();
+        this.consulta = new Query("diseno_cat("+diseño.toLowerCase()+")");
+        Map<String, Term> solution;
+        while (this.consulta.hasNext()){
+            solution = this.consulta.nextSolution();
+            //dev.add(solution.toString());
+        }
         return dev;
     }
 }

@@ -99,6 +99,8 @@ disenoclasificacion(bolsas, animales).
 
 %________________________________________________
 % Relacion de nombre de diseÃ±o con ID
+:- dynamic disenos/2.
+
 disenos(1, flores).
 disenos(2, alcatraz).
 disenos(3, cactus).
@@ -404,29 +406,49 @@ empleados(sergio_saul_torres_ibarra, sistemas).
 empleados(marco_antonio_argote_gasca, calidad).
 
 
+% Datos para cotizar
+costoProd(sombrero, 60).
+costoProd(tenis, 1200).
+costoProd(bolsa, 70).
+costoProd(aretes, 40).
+costoCate(flores, 240).
+costoCate(animal, 250).
+costoCate(personaje, 400).
+costoCate(pluma, 240).
+costoCate(mariposa, 250).
+costoCate(mandala, 280).
+costoCate(caballo, 290).
+costoCate(colibri, 260).
+costoCate(especial, 430).
+
+
 %________________________________________________
 % Reglas
 
 % Trae todos los tipos de producto.
 productos :- tipo_producto(X), format("Producto: ~w", [X]), nl.
 
-% Trae todos los diseños.
-disenost :- disenos(_,X), format("Diseño: ~w", [X]), nl.
+% Trae todos los diseï¿½os.
+disenost :- disenos(_,X), format("Diseï¿½o: ~w", [X]), nl.
 
 % Trae todos los colores.
 colorest :- colores(_,X), format("Color: ~w", [X]), nl.
 
-% Busca diseño en base a un rango de precios.
+% Busca diseï¿½o en base a un rango de precios.
 
 
 % Trae las tallas.
 tallast :- tallas(_,X), format("Talla: ~w", [X]), nl.
 
-% Busca precio según el tipo de producto, color, y diseño.
+% Busca precio segï¿½n el tipo de producto, color, y diseï¿½o.
 
 
-% Añadir y borrar elementos.
+% Aï¿½adir y borrar elementos.
 
 
-% Saber a que categoría pertenece un diseño.
-diseno_cat(X):- disenoclasificacion(Y,X), format("Clasificación: ~w", [Y]), nl.
+% Saber a que categorï¿½a pertenece un diseï¿½o.
+diseno_cat(X,Design):- setof(Y, disenoclasificacion(Y,X), Design).
+
+% Cotizar
+cotizar(T,D) :-  costoTipo(T,X), costoDis(D,Y), 
+                 C is (X + Y), format("Costo: ~w",[C]), nl.
