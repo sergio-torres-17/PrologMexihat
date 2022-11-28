@@ -444,7 +444,7 @@ tallast :- tallas(_,X), format("Talla: ~w", [X]), nl.
 
 
 % A�adir y borrar elementos.
-
+agregar(X,Y) :- assertz(disenos(X,Y)).
 
 % Saber a que categor�a pertenece un dise�o.
 diseno_cat(X,Design):- setof(Y, disenoclasificacion(Y,X), Design).
