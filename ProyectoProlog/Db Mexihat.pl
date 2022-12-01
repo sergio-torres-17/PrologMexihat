@@ -438,3 +438,9 @@ tallast :- tallas(_,X), format("Talla: ~w", [X]), nl.
 
 % Saber a que categor�a pertenece un dise�o.
 diseno_cat(X):- disenoclasificacion(Y,X), format("Clasificaci�n: ~w", [Y]), nl.
+
+% Cotizar
+cotizador(T,M,D,Z) :- format("Salida ~w ", [T]),
+costoProd(T,X), costoMate(M,W), costoCate(D,Y), 
+                 C is (X + W + Y),
+                 string_concat("$ ",C,Z).

@@ -433,28 +433,29 @@ costoMate(vinipiel,100).
 % Trae todos los tipos de producto.
 productos :- tipo_producto(X), format("Producto: ~w", [X]), nl.
 
-% Trae todos los dise�os.
-disenost :- disenos(_,X), format("Dise�o: ~w", [X]), nl.
+% Trae todos los dise os.
+disenost :- disenos(_,X), format("Dise o: ~w", [X]), nl.
 
 % Trae todos los colores.
 colorest :- colores(_,X), format("Color: ~w", [X]), nl.
 
-% Busca dise�o en base a un rango de precios.
+% Busca dise o en base a un rango de precios.
 
 
 % Trae las tallas.
 tallast :- tallas(_,X), format("Talla: ~w", [X]), nl.
 
-% Busca precio seg�n el tipo de producto, color, y dise�o.
+% Busca precio seg n el tipo de producto, color, y dise o.
 
 
-% A�adir y borrar elementos.
+% A adir y borrar elementos.
 agregar(X,Y) :- assertz(disenos(X,Y)).
 
-% Saber a que categor�a pertenece un dise�o.
+% Saber a que categor a pertenece un dise o.
 diseno_cat(X,Design):- setof(Y, disenoclasificacion(Y,X), Design).
 
 % Cotizar
-cotizador(T,M,D,Z) :-  costoProd(T,X), costoMate(M,W), costoCate(D,Y), 
+cotizador(T,M,D,Z) :- format("Salida ~w ", [T]),
+costoProd(T,X), costoMate(M,W), costoCate(D,Y), 
                  C is (X + W + Y),
                  string_concat("$ ",C,Z).

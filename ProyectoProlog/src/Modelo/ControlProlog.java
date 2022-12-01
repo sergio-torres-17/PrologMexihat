@@ -99,14 +99,14 @@ public class ControlProlog {
     }
     public String getPriceForTypeAndDesign(String typeProduct, String material, String design){
         this.consulta = null;
-        String dev = "",query;
+        String dev = null, query;
         this.isConnected();
         query = "cotizador("+typeProduct.toLowerCase()+","+material.toLowerCase()+","+design.toLowerCase()+",Precio)";
         System.out.println("Query "+query);
         this.consulta = new Query(query);
-        this.consulta.hasSolution();
-        while (this.consulta.hasMoreSolutions()) 
-            this.consulta.nextSolution();
+        //Map<String, Term> consulta;
+        while (this.consulta.hasSolution()) 
+            dev = this.consulta.oneSolution().get("Precio").toString();
         return dev;
     }
 }
